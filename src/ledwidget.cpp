@@ -104,6 +104,7 @@ LedWidget::LedWidget(QWidget *parent, libopenrazer::Device *device, libopenrazer
         }
 
         /* Wave left/right radio buttons */
+        razer_test::WaveDirection waveDir = led->getWaveDirection();
         for (int i = 1; i <= 2; i++) {
             QString name;
             if (i == 1)
@@ -112,10 +113,13 @@ LedWidget::LedWidget(QWidget *parent, libopenrazer::Device *device, libopenrazer
                 name = tr("Right");
             auto *radio = new QRadioButton(name, this);
             radio->setObjectName("radiobutton" + QString::number(i));
-            if (i == 1) // set the 'left' checkbox to activated
+            if ((waveDir == razer_test::WaveDirection::RIGHT_TO_LEFT && i == 1)
+                || (waveDir == razer_test::WaveDirection::LEFT_TO_RIGHT && i == 2)) {
                 radio->setChecked(true);
-            // hide by default
-            radio->hide();
+            }
+            if (currentEffect != razer_test::RazerEffect::Wave) {
+                radio->hide();
+            }
             lightingHBox->addWidget(radio);
             connect(radio, &QRadioButton::toggled, this, &LedWidget::waveRadioButtonChanged);
         }

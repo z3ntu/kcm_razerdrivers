@@ -1,5 +1,6 @@
 # Matrix Layouts
 install_data('matrix_layouts/razerblade16.json',
+             'matrix_layouts/razerdefault18.json',
              'matrix_layouts/razerdefault22.json',
              'matrix_layouts/razerblade25.json',
              install_dir : join_paths(get_option('datadir'), 'razergenie/matrix_layouts'))

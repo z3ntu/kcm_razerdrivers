@@ -66,6 +66,10 @@ CustomEditor::CustomEditor(libopenrazer::Device *device, bool launchMatrixDiscov
             if (!parseKeyboardJSON("razerblade16")) {
                 closeWindow();
             }
+        } else if (dimens.x == 6 && dimens.y == 18) { // Tenkeyless Razer keyboad (e.g. BlackWidow V3 Tenkeyless)
+            if (!parseKeyboardJSON("razerdefault18")) {
+                closeWindow();
+            }
         } else if (dimens.x == 6 && dimens.y == 22) { // "Normal" Razer keyboad (e.g. BlackWidow Chroma)
             if (!parseKeyboardJSON("razerdefault22")) {
                 closeWindow();
